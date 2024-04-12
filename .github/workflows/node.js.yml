@@ -1,0 +1,29 @@
+
+name: Build and Unit Testing
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+   
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js with version 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    - name: Install node modules    
+      run: npm install
+    - name: Run Unit Tests
+      run: npm run test:unit
+    - name: Dispaly SoftUni username
+      run: echo 'Stavrev999'
