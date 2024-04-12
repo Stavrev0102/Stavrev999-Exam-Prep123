@@ -8,12 +8,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  build_and_Unit_Test:
     runs-on: ubuntu-latest
-
-   
-
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js with version 20.x
@@ -27,3 +23,20 @@ jobs:
       run: npm run test:unit
     - name: Dispaly SoftUni username
       run: echo 'Stavrev999'
+
+  UI_Test:
+        runs-on: ubuntu-latest
+        needs: build_and_Unit_Test
+        steps:
+        - uses: actions/checkout@v4
+        - name: Use Node.js with version 20.x
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20.x
+            cache: 'npm'
+        - name: Install node modules    
+          run: npm install
+        - name: Start the application
+          run: npm run start & 
+        - name: Start the UI Tests
+          run: npm run test:ui    
