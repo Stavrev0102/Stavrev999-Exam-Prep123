@@ -38,5 +38,7 @@ jobs:
           run: npm install
         - name: Start the application
           run: npm run start & 
+        - name: Install browsers
+          run: npx playwright install  
         - name: Start the UI Tests
           run: npm run test:ui    
